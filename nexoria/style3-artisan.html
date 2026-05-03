@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Style 3 – Artisan & Prestataire</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--bg:#F5F3EE;--noir:#1A1A18;--blanc:#FFFFFF;--accent:#D4601A;--gris:#E8E5DF;--gris-t:#7A7870;--brun:#3D2B1F}
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--noir);overflow-x:hidden}
+
+    nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(245,243,238,.97);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:space-between;padding:0 6%;height:66px;border-bottom:1px solid var(--gris)}
+    .nav-logo{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;color:var(--noir);letter-spacing:-.01em}
+    .nav-logo span{color:var(--accent)}
+    .nav-links{display:flex;gap:2rem;list-style:none}
+    .nav-links a{color:var(--gris-t);text-decoration:none;font-size:.78rem;letter-spacing:.08em;transition:color .2s}
+    .nav-links a:hover{color:var(--noir)}
+    .nav-cta{background:var(--accent);color:#fff;border:none;padding:.5rem 1.4rem;border-radius:4px;cursor:pointer;font-family:'Inter',sans-serif;font-size:.8rem;font-weight:500;transition:background .25s}
+    .nav-cta:hover{background:#bf5516}
+
+    /* HERO */
+    #accueil{min-height:100vh;display:flex;align-items:center;padding:100px 6% 60px;position:relative;overflow:hidden}
+    .hero-bg-shape{position:absolute;right:-100px;top:50%;transform:translateY(-50%);width:600px;height:600px;background:var(--gris);border-radius:50%;opacity:.5}
+    .hero-content{position:relative;z-index:1;max-width:700px}
+    .hero-tag{display:inline-flex;align-items:center;gap:.5rem;background:rgba(212,96,26,.1);border:1px solid rgba(212,96,26,.25);color:var(--accent);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;padding:.38rem .9rem;border-radius:4px;margin-bottom:2rem;font-weight:500}
+    h1{font-family:'Syne',sans-serif;font-size:clamp(3rem,7vw,6rem);font-weight:800;line-height:.9;letter-spacing:-.03em;color:var(--noir);margin-bottom:1.5rem}
+    h1 span{color:var(--accent)}
+    .hero-desc{font-size:1rem;color:var(--gris-t);line-height:1.8;max-width:480px;margin-bottom:2.5rem;font-weight:300}
+    .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3rem}
+    .btn-accent{background:var(--accent);color:#fff;padding:.82rem 2.2rem;border-radius:4px;text-decoration:none;font-size:.85rem;font-weight:500;transition:all .25s;display:inline-block}
+    .btn-accent:hover{background:#bf5516;transform:translateY(-1px)}
+    .btn-ghost{border:1.5px solid var(--noir);color:var(--noir);padding:.78rem 2.2rem;border-radius:4px;text-decoration:none;font-size:.85rem;display:inline-block;transition:all .25s}
+    .btn-ghost:hover{background:var(--noir);color:var(--blanc)}
+    .hero-stats{display:flex;gap:3rem;padding-top:2rem;border-top:1px solid var(--gris)}
+    .hstat-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--noir);display:block;line-height:1}
+    .hstat-label{font-size:.72rem;color:var(--gris-t);letter-spacing:.08em}
+    .hero-img{position:absolute;right:6%;top:50%;transform:translateY(-50%);width:42%;height:80%;object-fit:cover;border-radius:8px;box-shadow:0 20px 60px rgba(26,26,24,.15)}
+
+    section{padding:90px 6%}
+    .sec-tag{font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:.7rem;font-weight:500}
+    .sec-title{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:700;color:var(--noir);margin-bottom:1rem;letter-spacing:-.02em;line-height:1.05}
+    .divider{width:40px;height:3px;background:var(--accent);border-radius:2px;margin-bottom:2.5rem}
+
+    /* SERVICES */
+    #services{background:var(--blanc)}
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    .service-card{padding:2.5rem 2rem;background:var(--bg);border-radius:8px;transition:all .3s;border:1px solid transparent}
+    .service-card:hover{background:var(--blanc);border-color:var(--gris);box-shadow:0 8px 30px rgba(26,26,24,.08);transform:translateY(-3px)}
+    .service-icon{width:50px;height:50px;background:rgba(212,96,26,.1);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1.2rem}
+    .service-title{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--noir);margin-bottom:.6rem}
+    .service-desc{font-size:.88rem;color:var(--gris-t);line-height:1.7}
+    .service-price{font-size:.85rem;font-weight:600;color:var(--accent);margin-top:1rem}
+
+    /* RÉALISATIONS */
+    #realisations{background:var(--bg)}
+    .real-grid{display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:300px 300px;gap:12px}
+    .real-item{overflow:hidden;border-radius:8px;position:relative}
+    .real-item:first-child{grid-row:span 2}
+    .real-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+    .real-item:hover img{transform:scale(1.05)}
+    .real-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,26,24,.7),transparent);display:flex;align-items:flex-end;padding:1.5rem;opacity:0;transition:opacity .3s}
+    .real-item:hover .real-overlay{opacity:1}
+    .real-label{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;color:#fff}
+
+    /* AVIS */
+    #avis{background:var(--blanc)}
+    .avis-layout{display:grid;grid-template-columns:1fr 2fr;gap:5rem;align-items:start}
+    .avis-score{background:var(--bg);border-radius:12px;padding:2rem;text-align:center;margin-top:1.5rem}
+    .score-num{font-family:'Syne',sans-serif;font-size:4rem;font-weight:800;color:var(--noir);display:block;line-height:1}
+    .score-stars{color:var(--accent);font-size:1.1rem;letter-spacing:.1rem;margin:.4rem 0}
+    .score-label{font-size:.75rem;color:var(--gris-t)}
+    .avis-list{display:flex;flex-direction:column;gap:1.5rem}
+    .avis-card{padding:1.8rem;background:var(--bg);border-radius:8px}
+    .stars{color:var(--accent);margin-bottom:.6rem;font-size:.85rem}
+    .avis-text{font-size:.9rem;color:var(--gris-t);line-height:1.72;margin-bottom:.8rem}
+    .avis-name{font-size:.78rem;font-weight:600;color:var(--noir);letter-spacing:.05em}
+
+    /* CONTACT */
+    #contact{background:var(--noir)}
+    .contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+    #contact .sec-title{color:var(--blanc)}
+    #contact .sec-tag{color:var(--accent)}
+    .contact-desc{font-size:.95rem;color:rgba(245,243,238,.5);line-height:1.8;margin-bottom:2rem;font-weight:300}
+    .ci{margin-bottom:1.3rem}
+    .ci-label{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:.3rem}
+    .ci p{font-size:.9rem;color:rgba(245,243,238,.55);line-height:1.6}
+    .contact-form{display:flex;flex-direction:column;gap:1rem}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .fg{display:flex;flex-direction:column;gap:.4rem}
+    .fg label{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,243,238,.35)}
+    .fg input,.fg select,.fg textarea{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:var(--blanc);padding:.75rem 1rem;font-family:'Inter',sans-serif;font-size:.9rem;outline:none;transition:border-color .25s;border-radius:4px}
+    .fg input::placeholder,.fg textarea::placeholder{color:rgba(245,243,238,.2)}
+    .fg input:focus,.fg select:focus{border-color:var(--accent)}
+    .fg select option{background:var(--noir)}
+    .fg textarea{resize:vertical;min-height:80px}
+    .btn-submit{background:var(--accent);color:#fff;border:none;padding:.88rem;border-radius:4px;cursor:pointer;font-family:'Inter',sans-serif;font-size:.85rem;font-weight:500;transition:background .25s}
+    .btn-submit:hover{background:#bf5516}
+
+    footer{background:var(--noir);color:rgba(245,243,238,.2);text-align:center;padding:1.5rem 5%;font-size:.78rem;border-top:1px solid rgba(255,255,255,.06)}
+    footer span{color:var(--accent)}
+
+    .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:999;align-items:center;justify-content:center}
+    .modal-overlay.show{display:flex}
+    .modal{background:var(--blanc);border-radius:8px;padding:2.5rem;max-width:380px;width:90%;text-align:center;animation:fadeUp .4s ease}
+    .modal h3{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:700;margin-bottom:.6rem}
+    .modal p{color:var(--gris-t);margin-bottom:1.5rem;line-height:1.6}
+    .modal-close{background:var(--accent);color:#fff;border:none;padding:.7rem 2rem;border-radius:4px;cursor:pointer;font-size:.85rem;font-weight:500}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:900px){
+      .nav-links{display:none}
+      .hero-img{display:none}
+      .hero-content{max-width:100%}
+      .services-grid{grid-template-columns:1fr}
+      .real-grid{grid-template-columns:1fr;grid-template-rows:auto}
+      .real-item:first-child{grid-row:auto;height:250px}
+      .real-item{height:200px}
+      .avis-layout,.contact-layout{grid-template-columns:1fr}
+      .form-row{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">Dupont<span>.</span>Menuiserie</div>
+  <ul class="nav-links">
+    <li><a href="#accueil">Accueil</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#realisations">Réalisations</a></li>
+    <li><a href="#avis">Avis</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Devis gratuit</button>
+</nav>
+
+<section id="accueil">
+  <div class="hero-bg-shape"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Artisan menuisier · Depuis 2005</div>
+    <h1>Menuiserie<br><span>sur mesure.</span></h1>
+    <p class="hero-desc">Fabrication et pose de menuiseries intérieures et extérieures sur mesure. Bois massif, qualité artisanale, résultat exceptionnel.</p>
+    <div class="hero-btns">
+      <a href="#services" class="btn-accent">Nos prestations</a>
+      <a href="#contact" class="btn-ghost">Devis gratuit</a>
+    </div>
+    <div class="hero-stats">
+      <div><span class="hstat-num">18 ans</span><span class="hstat-label">D'expérience</span></div>
+      <div><span class="hstat-num">500+</span><span class="hstat-label">Chantiers réalisés</span></div>
+      <div><span class="hstat-num">4.9★</span><span class="hstat-label">Note Google</span></div>
+    </div>
+  </div>
+  <img class="hero-img" src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=800&q=85" alt="Menuisier"/>
+</section>
+
+<section id="services">
+  <div class="sec-tag">Ce qu'on fait</div>
+  <h2 class="sec-title">Nos prestations</h2>
+  <div class="divider"></div>
+  <div class="services-grid">
+    <div class="service-card"><div class="service-icon">🚪</div><div class="service-title">Portes & Fenêtres</div><div class="service-desc">Fabrication et pose de portes intérieures, portes d'entrée et fenêtres sur mesure en bois massif.</div><div class="service-price">Sur devis</div></div>
+    <div class="service-card"><div class="service-icon">🪵</div><div class="service-title">Aménagement intérieur</div><div class="service-desc">Bibliothèques, placards, dressing, escaliers. Chaque réalisation est unique et adaptée à votre espace.</div><div class="service-price">Sur devis</div></div>
+    <div class="service-card"><div class="service-icon">🏠</div><div class="service-title">Terrasse & Pergola</div><div class="service-desc">Création de terrasses en bois, pergolas et abris de jardin. Des espaces extérieurs qui durent.</div><div class="service-price">Sur devis</div></div>
+    <div class="service-card"><div class="service-icon">🔧</div><div class="service-title">Réparation & Rénovation</div><div class="service-desc">Remise en état, remplacement, rénovation. On remet vie à vos vieilles menuiseries.</div><div class="service-price">Dès 80€</div></div>
+    <div class="service-card"><div class="service-icon">🎨</div><div class="service-title">Peinture & Finitions</div><div class="service-desc">Traitement, lasure, peinture. Toutes les finitions pour protéger et sublimer le bois.</div><div class="service-price">Sur devis</div></div>
+    <div class="service-card"><div class="service-icon">📐</div><div class="service-title">Étude & Conseils</div><div class="service-desc">Visite à domicile, étude de faisabilité, conseils matériaux. Devis détaillé sous 48h.</div><div class="service-price">Gratuit</div></div>
+  </div>
+</section>
+
+<section id="realisations">
+  <div class="sec-tag">Portfolio</div>
+  <h2 class="sec-title">Nos réalisations</h2>
+  <div class="divider"></div>
+  <div class="real-grid">
+    <div class="real-item"><img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80" alt=""/><div class="real-overlay"><div class="real-label">Bibliothèque sur mesure</div></div></div>
+    <div class="real-item"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt=""/><div class="real-overlay"><div class="real-label">Terrasse en bois</div></div></div>
+    <div class="real-item"><img src="https://images.unsplash.com/photo-1565793979786-6e47d7e1bdf9?w=600&q=80" alt=""/><div class="real-overlay"><div class="real-label">Escalier en chêne</div></div></div>
+  </div>
+</section>
+
+<section id="avis">
+  <div class="avis-layout">
+    <div>
+      <div class="sec-tag">Témoignages</div>
+      <h2 class="sec-title">Ils nous font confiance</h2>
+      <div class="avis-score"><span class="score-num">4.9</span><div class="score-stars">★★★★★</div><div class="score-label">Basé sur 180 avis Google</div></div>
+    </div>
+    <div class="avis-list">
+      <div class="avis-card"><div class="stars">★★★★★</div><p class="avis-text">Travail soigné, délais respectés, artisan sérieux. La bibliothèque sur mesure est exactement ce qu'on voulait. On recommande sans hésiter.</p><div class="avis-name">Pierre M.</div></div>
+      <div class="avis-card"><div class="stars">★★★★★</div><p class="avis-text">Excellent artisan, très professionnel. La terrasse est magnifique, les finitions impeccables. Rapport qualité-prix imbattable.</p><div class="avis-name">Isabelle R.</div></div>
+      <div class="avis-card"><div class="stars">★★★★★</div><p class="avis-text">Très content du résultat. Écoute, conseils, ponctualité — tout y est. Je ferai appel à lui pour mes prochains travaux.</p><div class="avis-name">Jean-Luc T.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-layout">
+    <div>
+      <div class="sec-tag">Devis gratuit</div>
+      <h2 class="sec-title" style="color:var(--blanc)">Parlons de<br>votre projet</h2>
+      <p class="contact-desc">Décrivez votre projet, on vous rappelle sous 24h pour convenir d'une visite gratuite à domicile.</p>
+      <div class="ci"><div class="ci-label">Téléphone</div><p>01 23 45 67 89</p></div>
+      <div class="ci"><div class="ci-label">Zone d'intervention</div><p>Narbonne et 50km alentours</p></div>
+      <div class="ci"><div class="ci-label">Horaires</div><p>Lun – Ven : 8h – 18h</p></div>
+    </div>
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="fg"><label>Nom</label><input type="text" placeholder="Votre nom" id="rn"/></div>
+        <div class="fg"><label>Téléphone</label><input type="tel" placeholder="06 00 00 00 00"/></div>
+      </div>
+      <div class="fg"><label>Type de projet</label><select><option>Portes & Fenêtres</option><option>Aménagement intérieur</option><option>Terrasse & Pergola</option><option>Réparation</option><option>Autre</option></select></div>
+      <div class="fg"><label>Description</label><textarea placeholder="Décrivez votre projet en quelques mots…"></textarea></div>
+      <button class="btn-submit" onclick="confirmContact()">Demander un devis gratuit →</button>
+    </div>
+  </div>
+</section>
+
+<footer><p>© 2025 <span>Dupont Menuiserie</span> · Artisan menuisier · Tous droits réservés</p></footer>
+<div class="modal-overlay" id="modal"><div class="modal"><div style="font-size:2rem;margin-bottom:.8rem">✓</div><h3>Demande envoyée !</h3><p>Nous vous recontactons sous 24h pour convenir d'une visite.</p><button class="modal-close" onclick="document.getElementById('modal').classList.remove('show')">Fermer</button></div></div>
+<script>function confirmContact(){const n=document.getElementById('rn').value.trim();if(!n){alert('Veuillez entrer votre nom.');return;}document.getElementById('modal').classList.add('show');}</script>
+</body>
+</html>

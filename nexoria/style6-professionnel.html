@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Style 6 – Professionnel & Libéral</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--bleu:#1B3A6B;--bleu-clair:#2A5298;--ciel:#EEF3FB;--blanc:#FFFFFF;--gris:#F4F6FA;--gris2:#DDE3EF;--gris-t:#6B7894;--or:#C9A84C}
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'IBM Plex Sans',sans-serif;background:var(--blanc);color:var(--bleu);overflow-x:hidden}
+
+    nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:space-between;padding:0 6%;height:66px;border-bottom:1px solid var(--gris2)}
+    .nav-logo{display:flex;align-items:center;gap:.8rem}
+    .nav-logo-icon{width:36px;height:36px;background:var(--bleu);border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.85rem;font-family:'IBM Plex Serif',serif;font-style:italic}
+    .nav-logo-text{font-family:'IBM Plex Serif',serif;font-size:1.1rem;color:var(--bleu);font-weight:400}
+    .nav-links{display:flex;gap:2rem;list-style:none}
+    .nav-links a{color:var(--gris-t);text-decoration:none;font-size:.78rem;letter-spacing:.06em;transition:color .2s}
+    .nav-links a:hover{color:var(--bleu)}
+    .nav-cta{background:var(--bleu);color:#fff;border:none;padding:.5rem 1.4rem;border-radius:5px;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:.78rem;font-weight:500;transition:background .25s}
+    .nav-cta:hover{background:var(--bleu-clair)}
+
+    /* HERO */
+    #accueil{min-height:100vh;display:grid;grid-template-columns:1.1fr .9fr;padding-top:66px;background:var(--blanc)}
+    .hero-content{display:flex;flex-direction:column;justify-content:center;padding:8% 5% 8% 6%}
+    .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--ciel);color:var(--bleu-clair);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:.4rem .9rem;border-radius:4px;margin-bottom:2rem;font-weight:500;border:1px solid var(--gris2)}
+    h1{font-family:'IBM Plex Serif',serif;font-size:clamp(2.5rem,5vw,4.5rem);color:var(--bleu);line-height:1.05;font-weight:300;margin-bottom:1.2rem;letter-spacing:-.01em}
+    h1 strong{font-weight:600}
+    h1 em{font-style:italic;color:var(--or)}
+    .hero-desc{font-size:.97rem;color:var(--gris-t);line-height:1.85;max-width:420px;margin-bottom:2.5rem;font-weight:300}
+    .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3rem}
+    .btn-bleu{background:var(--bleu);color:#fff;padding:.82rem 2.2rem;border-radius:5px;text-decoration:none;font-size:.82rem;font-weight:500;transition:all .25s;display:inline-block}
+    .btn-bleu:hover{background:var(--bleu-clair);transform:translateY(-1px)}
+    .btn-outline{border:1.5px solid var(--gris2);color:var(--bleu);padding:.78rem 2.2rem;border-radius:5px;text-decoration:none;font-size:.82rem;display:inline-block;transition:all .25s}
+    .btn-outline:hover{border-color:var(--bleu);background:var(--ciel)}
+    .hero-trust{display:flex;gap:2rem;padding:1.5rem;background:var(--gris);border-radius:8px;flex-wrap:wrap}
+    .trust-item{display:flex;align-items:center;gap:.6rem;font-size:.82rem;color:var(--gris-t)}
+    .trust-icon{font-size:1rem}
+    .hero-photo{background:url('https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=900&q=85') center top/cover no-repeat;position:relative}
+    .hero-photo::before{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(255,255,255,.1),transparent)}
+    .hero-card{position:absolute;bottom:3rem;left:-2rem;background:#fff;border-radius:10px;padding:1.2rem 1.5rem;box-shadow:0 8px 30px rgba(27,58,107,.12);min-width:200px}
+    .hcard-num{font-family:'IBM Plex Serif',serif;font-size:2rem;color:var(--bleu);font-weight:600;display:block;line-height:1}
+    .hcard-label{font-size:.75rem;color:var(--gris-t)}
+
+    section{padding:90px 6%}
+    .sec-tag{font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--bleu-clair);margin-bottom:.7rem;font-weight:500}
+    .sec-title{font-family:'IBM Plex Serif',serif;font-size:clamp(1.8rem,4vw,2.8rem);color:var(--bleu);font-weight:300;margin-bottom:1rem;line-height:1.15}
+    .sec-title em{font-style:italic}
+    .divider{width:40px;height:2px;background:linear-gradient(90deg,var(--bleu),var(--or));border-radius:2px;margin-bottom:2.5rem}
+    .sec-intro{max-width:540px;color:var(--gris-t);line-height:1.8;font-size:.95rem;font-weight:300}
+
+    /* SERVICES */
+    #services{background:var(--gris)}
+    .services-layout{display:grid;grid-template-columns:1fr 2fr;gap:4rem;align-items:start}
+    .services-sidebar{position:sticky;top:100px}
+    .services-sidebar p{font-size:.92rem;color:var(--gris-t);line-height:1.8;margin-bottom:2rem;font-weight:300}
+    .services-grid{display:flex;flex-direction:column;gap:1px;background:var(--gris2)}
+    .service-item{background:var(--blanc);padding:2rem 2.5rem;display:flex;align-items:flex-start;gap:1.5rem;transition:background .25s}
+    .service-item:hover{background:var(--ciel)}
+    .service-num{font-family:'IBM Plex Serif',serif;font-size:1.5rem;color:var(--gris2);font-weight:300;flex-shrink:0;width:40px}
+    .service-title{font-family:'IBM Plex Serif',serif;font-size:1.15rem;color:var(--bleu);margin-bottom:.4rem}
+    .service-desc{font-size:.88rem;color:var(--gris-t);line-height:1.65}
+
+    /* À PROPOS */
+    #apropos{background:var(--blanc)}
+    .apropos-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+    .apropos-img-wrap{position:relative}
+    .apropos-img{width:100%;height:500px;object-fit:cover;border-radius:8px}
+    .apropos-badge{position:absolute;bottom:-20px;right:-20px;background:var(--bleu);color:#fff;border-radius:8px;padding:1.5rem;box-shadow:0 8px 30px rgba(27,58,107,.2)}
+    .abadge-num{font-family:'IBM Plex Serif',serif;font-size:2.5rem;font-weight:600;display:block;line-height:1}
+    .abadge-label{font-size:.75rem;color:rgba(255,255,255,.6)}
+    .apropos-text p{font-size:.95rem;color:var(--gris-t);line-height:1.85;margin-bottom:1.2rem;font-weight:300}
+    .diplomes{display:flex;flex-direction:column;gap:.8rem;margin-top:1.5rem}
+    .diplome{display:flex;align-items:center;gap:.8rem;font-size:.88rem;color:var(--gris-t)}
+    .diplome::before{content:'✓';color:var(--or);font-weight:700;flex-shrink:0}
+
+    /* AVIS */
+    #avis{background:var(--gris)}
+    .avis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    .avis-card{background:var(--blanc);padding:2rem;border-radius:8px;border-top:3px solid var(--bleu)}
+    .stars{color:var(--or);margin-bottom:.7rem;font-size:.85rem}
+    .avis-text{font-family:'IBM Plex Serif',serif;font-size:.98rem;color:var(--bleu);line-height:1.65;margin-bottom:1.2rem;font-style:italic;font-weight:300}
+    .avis-name{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gris-t);font-weight:500}
+
+    /* CONTACT */
+    #contact{background:var(--bleu);padding:90px 6%}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+    #contact .sec-title{color:var(--blanc);font-style:italic}
+    #contact .sec-tag{color:rgba(255,255,255,.5)}
+    .contact-desc{font-size:.95rem;color:rgba(255,255,255,.5);line-height:1.8;margin-bottom:2rem;font-weight:300}
+    .ci{margin-bottom:1.3rem;padding-bottom:1.3rem;border-bottom:1px solid rgba(255,255,255,.08)}
+    .ci:last-child{border:none}
+    .ci-label{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--or);margin-bottom:.3rem}
+    .ci p{font-size:.9rem;color:rgba(255,255,255,.5);line-height:1.6}
+    .contact-form{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:2.5rem;display:flex;flex-direction:column;gap:1rem}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .fg{display:flex;flex-direction:column;gap:.4rem}
+    .fg label{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+    .fg input,.fg select,.fg textarea{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#fff;padding:.75rem 1rem;font-family:'IBM Plex Sans',sans-serif;font-size:.9rem;outline:none;transition:border-color .25s;border-radius:5px}
+    .fg input::placeholder,.fg textarea::placeholder{color:rgba(255,255,255,.2)}
+    .fg input:focus,.fg select:focus{border-color:rgba(201,168,76,.5)}
+    .fg select option{background:var(--bleu)}
+    .fg textarea{resize:vertical;min-height:80px}
+    .btn-submit{background:var(--or);color:var(--bleu);border:none;padding:.9rem;border-radius:5px;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:.85rem;font-weight:600;transition:all .25s}
+    .btn-submit:hover{background:#d4b455;transform:translateY(-1px)}
+
+    footer{background:var(--bleu);color:rgba(255,255,255,.2);text-align:center;padding:1.5rem 5%;font-size:.78rem;border-top:1px solid rgba(255,255,255,.08)}
+    footer span{color:var(--or)}
+
+    .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:999;align-items:center;justify-content:center}
+    .modal-overlay.show{display:flex}
+    .modal{background:var(--blanc);border-radius:8px;padding:2.5rem;max-width:380px;width:90%;text-align:center;animation:fadeUp .4s ease}
+    .modal h3{font-family:'IBM Plex Serif',serif;font-size:1.5rem;color:var(--bleu);margin-bottom:.6rem}
+    .modal p{color:var(--gris-t);margin-bottom:1.5rem;line-height:1.6;font-size:.9rem}
+    .modal-close{background:var(--bleu);color:#fff;border:none;padding:.7rem 2rem;border-radius:5px;cursor:pointer;font-size:.85rem;font-weight:500}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:900px){
+      .nav-links{display:none}
+      #accueil{grid-template-columns:1fr}
+      .hero-photo{height:50vw}
+      .hero-card{display:none}
+      .services-layout,.apropos-grid,.contact-grid{grid-template-columns:1fr}
+      .services-sidebar{position:static}
+      .avis-grid{grid-template-columns:1fr}
+      .form-row{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-icon">Dr</div>
+    <div class="nav-logo-text">Cabinet Martin</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#accueil">Accueil</a></li>
+    <li><a href="#services">Consultations</a></li>
+    <li><a href="#apropos">À propos</a></li>
+    <li><a href="#avis">Avis</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Prendre RDV</button>
+</nav>
+
+<section id="accueil">
+  <div class="hero-content">
+    <div class="hero-badge">🩺 Médecin généraliste · Narbonne</div>
+    <h1>Votre santé,<br><strong>notre <em>priorité.</em></strong></h1>
+    <p class="hero-desc">Cabinet médical de proximité à Narbonne. Consultations sur rendez-vous, suivi personnalisé, prise en charge rapide pour les urgences.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-bleu">Prendre rendez-vous</a>
+      <a href="#services" class="btn-outline">Nos consultations</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item"><span class="trust-icon">✅</span>Conventionné secteur 1</div>
+      <div class="trust-item"><span class="trust-icon">💳</span>Carte Vitale acceptée</div>
+      <div class="trust-item"><span class="trust-icon">🚨</span>Urgences le jour même</div>
+    </div>
+  </div>
+  <div class="hero-photo">
+    <div class="hero-card">
+      <span class="hcard-num">20 ans</span>
+      <span class="hcard-label">d'expérience médicale</span>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="services-layout">
+    <div class="services-sidebar">
+      <div class="sec-tag">Consultations</div>
+      <h2 class="sec-title">Ce que nous <em>proposons</em></h2>
+      <div class="divider"></div>
+      <p>Des consultations adaptées à chaque situation. Prise en charge globale et suivi personnalisé pour toute la famille.</p>
+      <a href="#contact" class="btn-bleu" style="display:inline-block;margin-top:1.5rem;text-align:center">Prendre RDV →</a>
+    </div>
+    <div class="services-grid">
+      <div class="service-item"><div class="service-num">01</div><div><div class="service-title">Médecine générale</div><div class="service-desc">Consultations courantes, suivi des pathologies chroniques, renouvellement d'ordonnances, certificats médicaux.</div></div></div>
+      <div class="service-item"><div class="service-num">02</div><div><div class="service-title">Pédiatrie</div><div class="service-desc">Suivi de croissance, vaccinations, consultations enfants et nourrissons. Prise en charge des maladies infantiles.</div></div></div>
+      <div class="service-item"><div class="service-num">03</div><div><div class="service-title">Médecine préventive</div><div class="service-desc">Bilans de santé, dépistages, conseils hygiène de vie, nutrition. Prévention adaptée à chaque âge.</div></div></div>
+      <div class="service-item"><div class="service-num">04</div><div><div class="service-title">Urgences du jour</div><div class="service-desc">Plages horaires réservées aux urgences. Prise en charge le jour même sur appel téléphonique.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="apropos">
+  <div class="apropos-grid">
+    <div class="apropos-img-wrap">
+      <img class="apropos-img" src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=85" alt="Médecin"/>
+      <div class="apropos-badge"><span class="abadge-num">2000+</span><span class="abadge-label">patients suivis</span></div>
+    </div>
+    <div class="apropos-text">
+      <div class="sec-tag">À propos</div>
+      <h2 class="sec-title">Dr. <em>Sophie Martin</em></h2>
+      <div class="divider"></div>
+      <p>Médecin généraliste installée à Narbonne depuis 2004, le Dr. Martin a fondé son cabinet avec une conviction simple : une médecine de proximité, à l'écoute, humaine.</p>
+      <p>Avec 20 ans d'expérience et une approche holistique de la santé, elle accompagne ses patients à tous les moments de leur vie, de la petite enfance à l'âge adulte.</p>
+      <div class="diplomes">
+        <div class="diplome">Doctorat en médecine — Université de Montpellier</div>
+        <div class="diplome">DU Médecine du sport</div>
+        <div class="diplome">Formation en nutrition et micronutrition</div>
+        <div class="diplome">Membre de la Société Française de Médecine Générale</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="avis">
+  <div class="sec-tag">Témoignages</div>
+  <h2 class="sec-title">Ils nous font <em>confiance</em></h2>
+  <div class="divider"></div>
+  <div class="avis-grid">
+    <div class="avis-card"><div class="stars">★★★★★</div><p class="avis-text">Un médecin à l'écoute, qui prend le temps d'expliquer. On repart toujours rassurés. Je recommande ce cabinet à tout mon entourage.</p><div class="avis-name">Martine B.</div></div>
+    <div class="avis-card"><div class="stars">★★★★★</div><p class="avis-text">Le Dr. Martin suit toute ma famille depuis des années. Professionnalisme, disponibilité et bienveillance. Une médecin exceptionnelle.</p><div class="avis-name">François L.</div></div>
+    <div class="avis-card"><div class="stars">★★★★★</div><p class="avis-text">Prise en charge rapide, diagnostic précis, suivi irréprochable. Un cabinet qui mérite vraiment sa réputation dans le quartier.</p><div class="avis-name">Céline M.</div></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-grid">
+    <div>
+      <div class="sec-tag">Rendez-vous</div>
+      <h2 class="sec-title">Prendre rendez-vous</h2>
+      <p class="contact-desc">Remplissez le formulaire ou appelez directement. Les urgences sont prises en charge le jour même.</p>
+      <div class="ci"><div class="ci-label">Téléphone</div><p>01 23 45 67 89<br>Lun – Ven : 8h – 18h</p></div>
+      <div class="ci"><div class="ci-label">Adresse</div><p>15 Avenue de la République<br>11100 Narbonne</p></div>
+      <div class="ci"><div class="ci-label">Horaires</div><p>Lun, Mar, Jeu, Ven : 8h30 – 12h · 14h – 18h<br>Mercredi : 8h30 – 13h · Fermé le soir</p></div>
+    </div>
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="fg"><label>Nom & Prénom</label><input type="text" placeholder="Votre nom" id="rn"/></div>
+        <div class="fg"><label>Téléphone</label><input type="tel" placeholder="06 00 00 00 00"/></div>
+      </div>
+      <div class="fg"><label>Motif de consultation</label><select><option>Consultation générale</option><option>Pédiatrie</option><option>Bilan de santé</option><option>Urgence</option><option>Renouvellement ordonnance</option></select></div>
+      <div class="form-row">
+        <div class="fg"><label>Date souhaitée</label><input type="date"/></div>
+        <div class="fg"><label>Heure souhaitée</label><input type="time" value="09:00"/></div>
+      </div>
+      <div class="fg"><label>Message (optionnel)</label><textarea placeholder="Précisions sur votre consultation…"></textarea></div>
+      <button class="btn-submit" onclick="confirmRdv()">Confirmer ma demande →</button>
+    </div>
+  </div>
+</section>
+
+<footer><p>© 2025 <span>Cabinet Martin</span> · Médecin généraliste · Tous droits réservés</p></footer>
+<div class="modal-overlay" id="modal"><div class="modal"><div style="font-size:2rem;margin-bottom:.8rem">✓</div><h3>Demande envoyée</h3><p>Nous vous confirmons votre rendez-vous par téléphone dans les meilleurs délais.</p><button class="modal-close" onclick="document.getElementById('modal').classList.remove('show')">Fermer</button></div></div>
+<script>function confirmRdv(){const n=document.getElementById('rn').value.trim();if(!n){alert('Veuillez entrer votre nom.');return;}document.getElementById('modal').classList.add('show');}</script>
+</body>
+</html>

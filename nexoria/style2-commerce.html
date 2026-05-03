@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Style 2 – Commerce & Boutique</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--noir:#0D0D0D;--blanc:#FAFAF8;--gris:#F2F0EB;--gris2:#E5E2DA;--gris-t:#888;--accent:#C4956A;--vert:#2C5F2E}
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Jost',sans-serif;background:var(--blanc);color:var(--noir);overflow-x:hidden}
+
+    nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(250,250,248,.97);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:space-between;padding:0 6%;height:66px;border-bottom:1px solid var(--gris2)}
+    .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--noir);letter-spacing:.08em;font-style:italic}
+    .nav-links{display:flex;gap:2.5rem;list-style:none}
+    .nav-links a{color:var(--gris-t);text-decoration:none;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;transition:color .2s}
+    .nav-links a:hover{color:var(--noir)}
+    .nav-cta{background:var(--noir);color:var(--blanc);border:none;padding:.5rem 1.5rem;cursor:pointer;font-family:'Jost',sans-serif;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;transition:background .25s}
+    .nav-cta:hover{background:#333}
+
+    /* HERO - grille asymétrique */
+    #accueil{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:66px}
+    .hero-left{display:flex;flex-direction:column;justify-content:center;padding:8% 6% 8% 6%;background:var(--blanc)}
+    .hero-tag{font-size:.68rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:2rem;display:flex;align-items:center;gap:.8rem}
+    .hero-tag::before{content:'';width:25px;height:1px;background:var(--accent)}
+    h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,5vw,5.5rem);color:var(--noir);line-height:.95;font-weight:300;margin-bottom:1.5rem;letter-spacing:-.01em}
+    h1 em{font-style:italic;color:var(--accent)}
+    .hero-desc{font-size:.95rem;color:var(--gris-t);line-height:1.8;max-width:380px;margin-bottom:2.5rem;font-weight:300}
+    .hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+    .btn-noir{background:var(--noir);color:var(--blanc);padding:.82rem 2.2rem;text-decoration:none;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;transition:background .25s;display:inline-block}
+    .btn-noir:hover{background:#333}
+    .btn-outline{border:1px solid var(--noir);color:var(--noir);padding:.78rem 2.2rem;text-decoration:none;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;display:inline-block;transition:all .25s}
+    .btn-outline:hover{background:var(--noir);color:var(--blanc)}
+    .hero-right{display:grid;grid-template-rows:1fr 1fr;gap:2px}
+    .hero-img-top{background:url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=900&q=85') center/cover no-repeat}
+    .hero-img-bottom{background:url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=900&q=85') center/cover no-repeat}
+
+    section{padding:90px 6%}
+    .sec-label{font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);margin-bottom:.8rem}
+    .sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);color:var(--noir);font-weight:300;margin-bottom:1rem;line-height:1.1}
+    .sec-title em{font-style:italic}
+    .divider{width:40px;height:1px;background:var(--accent);margin-bottom:2.5rem}
+
+    /* PRODUITS */
+    #produits{background:var(--gris)}
+    .produits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    .produit-card{background:var(--blanc);overflow:hidden;transition:transform .3s}
+    .produit-card:hover{transform:translateY(-4px)}
+    .produit-img{width:100%;height:280px;object-fit:cover}
+    .produit-body{padding:1.2rem}
+    .produit-cat{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.3rem}
+    .produit-nom{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--noir);margin-bottom:.3rem}
+    .produit-desc{font-size:.82rem;color:var(--gris-t);line-height:1.55;margin-bottom:.8rem}
+    .produit-prix{font-size:.95rem;font-weight:600;color:var(--noir)}
+
+    /* À PROPOS */
+    #apropos{background:var(--blanc)}
+    .apropos-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+    .apropos-img{height:550px;overflow:hidden}
+    .apropos-img img{width:100%;height:100%;object-fit:cover}
+    .apropos-text p{font-size:.95rem;color:var(--gris-t);line-height:1.85;margin-bottom:1.5rem;font-weight:300}
+    .apropos-stats{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem;padding-top:2rem;border-top:1px solid var(--gris2)}
+    .astat-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;color:var(--accent);display:block;line-height:1}
+    .astat-label{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gris-t)}
+
+    /* GALERIE */
+    #galerie{background:var(--gris);padding:0}
+    .gal-grid{display:grid;grid-template-columns:repeat(4,1fr);height:400px}
+    .gal-item{overflow:hidden}
+    .gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s;filter:brightness(.9)}
+    .gal-item:hover img{transform:scale(1.06);filter:brightness(1)}
+
+    /* AVIS */
+    #avis{background:var(--blanc)}
+    .avis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    .avis-card{padding:2rem;border:1px solid var(--gris2)}
+    .stars{color:var(--accent);margin-bottom:.8rem;font-size:.85rem;letter-spacing:.1rem}
+    .avis-text{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--noir);line-height:1.6;margin-bottom:1.2rem;font-style:italic;font-weight:300}
+    .avis-name{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gris-t)}
+
+    /* CONTACT */
+    #contact{background:var(--noir);padding:90px 6%}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+    #contact .sec-title{color:var(--blanc);font-style:italic}
+    #contact .sec-label{color:var(--accent)}
+    #contact .divider{background:var(--accent)}
+    .contact-info p{font-size:.95rem;color:rgba(250,250,248,.5);line-height:1.8;margin-bottom:2rem;font-weight:300}
+    .c-item{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.2rem}
+    .c-icon{font-size:1rem;flex-shrink:0;margin-top:.1rem}
+    .c-text strong{display:block;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:.2rem}
+    .c-text p{font-size:.9rem;color:rgba(250,250,248,.5);line-height:1.6}
+    .contact-form{display:flex;flex-direction:column;gap:1rem}
+    .fg{display:flex;flex-direction:column;gap:.4rem}
+    .fg label{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,250,248,.35)}
+    .fg input,.fg textarea{background:rgba(255,255,255,.05);border:none;border-bottom:1px solid rgba(196,149,106,.3);color:var(--blanc);padding:.7rem 0;font-family:'Jost',sans-serif;font-size:.9rem;outline:none;transition:border-color .25s;border-radius:0}
+    .fg input::placeholder,.fg textarea::placeholder{color:rgba(250,250,248,.2)}
+    .fg input:focus{border-color:var(--accent)}
+    .fg textarea{resize:vertical;min-height:80px}
+    .btn-submit{background:var(--accent);color:#fff;border:none;padding:.88rem 2rem;cursor:pointer;font-family:'Jost',sans-serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;font-weight:500;transition:background .25s}
+    .btn-submit:hover{background:#b8845a}
+
+    footer{background:var(--noir);color:rgba(250,250,248,.2);text-align:center;padding:1.5rem 5%;font-size:.75rem;border-top:1px solid rgba(255,255,255,.06)}
+    footer span{color:var(--accent)}
+
+    .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:999;align-items:center;justify-content:center}
+    .modal-overlay.show{display:flex}
+    .modal{background:var(--blanc);padding:3rem;max-width:380px;width:90%;text-align:center;animation:fadeUp .4s ease}
+    .modal h3{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--noir);margin-bottom:.6rem;font-style:italic}
+    .modal p{color:var(--gris-t);margin-bottom:1.5rem;line-height:1.6;font-size:.9rem}
+    .modal-close{background:var(--noir);color:var(--blanc);border:none;padding:.7rem 2rem;cursor:pointer;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:900px){
+      .nav-links{display:none}
+      #accueil{grid-template-columns:1fr}
+      .hero-right{height:50vw;grid-template-rows:1fr}
+      .hero-img-bottom{display:none}
+      .produits-grid,.avis-grid{grid-template-columns:1fr}
+      .apropos-grid,.contact-grid{grid-template-columns:1fr}
+      .gal-grid{grid-template-columns:1fr 1fr;height:auto}
+      .gal-item{height:200px}
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">Maison Léa</div>
+  <ul class="nav-links">
+    <li><a href="#accueil">Accueil</a></li>
+    <li><a href="#produits">Collections</a></li>
+    <li><a href="#apropos">À propos</a></li>
+    <li><a href="#avis">Avis</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Nous contacter</button>
+</nav>
+
+<section id="accueil">
+  <div class="hero-left">
+    <div class="hero-tag">Boutique · Narbonne</div>
+    <h1>Mode &<br><em>art de vivre</em></h1>
+    <p class="hero-desc">Une sélection soignée de vêtements, accessoires et objets de décoration. Des pièces choisies avec passion pour sublimer votre quotidien.</p>
+    <div class="hero-btns">
+      <a href="#produits" class="btn-noir">Voir la collection</a>
+      <a href="#apropos" class="btn-outline">Notre histoire</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-top"></div>
+    <div class="hero-img-bottom"></div>
+  </div>
+</section>
+
+<section id="produits">
+  <div class="sec-label">Collection</div>
+  <h2 class="sec-title">Nos <em>pièces</em> du moment</h2>
+  <div class="divider"></div>
+  <div class="produits-grid">
+    <div class="produit-card">
+      <img class="produit-img" src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=600&q=80" alt="Vêtement"/>
+      <div class="produit-body">
+        <div class="produit-cat">Prêt-à-porter</div>
+        <div class="produit-nom">Robe lin naturel</div>
+        <div class="produit-desc">Lin 100% naturel, coupe fluide et élégante. Disponible en 3 coloris.</div>
+        <div class="produit-prix">89,00 €</div>
+      </div>
+    </div>
+    <div class="produit-card">
+      <img class="produit-img" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&q=80" alt="Accessoire"/>
+      <div class="produit-body">
+        <div class="produit-cat">Accessoires</div>
+        <div class="produit-nom">Sac tressé naturel</div>
+        <div class="produit-desc">Tissage artisanal, cuir naturel. Pièce unique fabriquée à la main.</div>
+        <div class="produit-prix">120,00 €</div>
+      </div>
+    </div>
+    <div class="produit-card">
+      <img class="produit-img" src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80" alt="Déco"/>
+      <div class="produit-body">
+        <div class="produit-cat">Décoration</div>
+        <div class="produit-nom">Vase céramique fait main</div>
+        <div class="produit-desc">Céramique tournée à la main, glaçure unique. Aucune pièce identique.</div>
+        <div class="produit-prix">65,00 €</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="apropos">
+  <div class="apropos-grid">
+    <div class="apropos-img">
+      <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=900&q=85" alt="Boutique"/>
+    </div>
+    <div class="apropos-text">
+      <div class="sec-label">Notre histoire</div>
+      <h2 class="sec-title">Une boutique<br><em>avec une âme</em></h2>
+      <div class="divider"></div>
+      <p>Maison Léa est née d'une passion pour les belles choses simples. Depuis 2015, nous sélectionnons avec soin des créateurs locaux et des marques éthiques pour vous proposer une mode qui a du sens.</p>
+      <p>Chaque pièce raconte une histoire. Celle de ses créateurs, de ses matières, de son savoir-faire. Venez découvrir notre univers dans notre boutique en cœur de ville.</p>
+      <div class="apropos-stats">
+        <div><span class="astat-num">+800</span><span class="astat-label">Clients fidèles</span></div>
+        <div><span class="astat-num">9 ans</span><span class="astat-label">D'expérience</span></div>
+        <div><span class="astat-num">100%</span><span class="astat-label">Marques éthiques</span></div>
+        <div><span class="astat-num">4.9★</span><span class="astat-label">Note Google</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="galerie" class="gal-grid">
+  <div class="gal-item"><img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=600&q=80" alt=""/></div>
+  <div class="gal-item"><img src="https://images.unsplash.com/photo-1558171813-1d97e66acb25?w=600&q=80" alt=""/></div>
+  <div class="gal-item"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&q=80" alt=""/></div>
+  <div class="gal-item"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&q=80" alt=""/></div>
+</div>
+
+<section id="avis">
+  <div class="sec-label">Témoignages</div>
+  <h2 class="sec-title">Ce qu'elles<br><em>en disent</em></h2>
+  <div class="divider"></div>
+  <div class="avis-grid">
+    <div class="avis-card"><div class="stars">★★★★★</div><p class="avis-text">Une boutique comme on n'en trouve plus. Les conseils sont précieux, les pièces uniques. Je ne vais plus nulle part ailleurs.</p><div class="avis-name">Claire M. · Google</div></div>
+    <div class="avis-card"><div class="stars">★★★★★</div><p class="avis-text">Coup de cœur pour la collection lin. Qualité irréprochable, service attentionné. Une vraie adresse de quartier à soutenir.</p><div class="avis-name">Sophie L. · Google</div></div>
+    <div class="avis-card"><div class="stars">★★★★★</div><p class="avis-text">Les vases céramique sont magnifiques. Chaque visite est une découverte. Une équipe passionnée qui donne envie de revenir.</p><div class="avis-name">Marie F. · Google</div></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="sec-label">Nous trouver</div>
+      <h2 class="sec-title">Venez nous<br>rendre visite</h2>
+      <div class="divider"></div>
+      <p>Notre boutique vous accueille du mardi au samedi. Venez découvrir nos nouvelles collections dans un cadre chaleureux.</p>
+      <div class="c-item"><div class="c-icon">📍</div><div class="c-text"><strong>Adresse</strong><p>12 Rue des Arts, Centre-ville</p></div></div>
+      <div class="c-item"><div class="c-icon">🕐</div><div class="c-text"><strong>Horaires</strong><p>Mar – Sam : 10h – 19h<br>Lun & Dim : Fermé</p></div></div>
+      <div class="c-item"><div class="c-icon">📞</div><div class="c-text"><strong>Téléphone</strong><p>01 23 45 67 89</p></div></div>
+    </div>
+    <div class="contact-form">
+      <div class="fg"><label>Nom</label><input type="text" placeholder="Votre nom" id="rn"/></div>
+      <div class="fg"><label>Email</label><input type="email" placeholder="votre@email.fr"/></div>
+      <div class="fg"><label>Message</label><textarea placeholder="Une question, une demande spéciale…"></textarea></div>
+      <button class="btn-submit" onclick="confirmContact()">Envoyer →</button>
+    </div>
+  </div>
+</section>
+
+<footer><p>© 2025 <span>Maison Léa</span> · Boutique · Tous droits réservés</p></footer>
+<div class="modal-overlay" id="modal"><div class="modal"><div style="font-size:2rem;margin-bottom:.8rem">✓</div><h3>Message envoyé !</h3><p>Nous vous répondons dans les plus brefs délais.</p><button class="modal-close" onclick="document.getElementById('modal').classList.remove('show')">Fermer</button></div></div>
+<script>function confirmContact(){const n=document.getElementById('rn').value.trim();if(!n){alert('Veuillez entrer votre nom.');return;}document.getElementById('modal').classList.add('show');}</script>
+</body>
+</html>

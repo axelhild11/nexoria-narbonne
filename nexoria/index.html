@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nexoria – Création de Sites Web</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root{
+      --noir:#060608;--gris1:#0E0E12;--gris2:#16161C;--gris3:#1E1E26;
+      --accent:#6C63FF;--accent2:#FF6B6B;--vert:#00D4AA;
+      --blanc:#F0EFF8;--gris-texte:#8887A0;--bordure:rgba(108,99,255,.15);
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth;overflow-x:hidden}
+    body{font-family:'Space Grotesk',sans-serif;background:var(--noir);color:var(--blanc);overflow-x:hidden;max-width:100vw}
+
+    /* ── NAV ── */
+    nav{
+      position:fixed;top:0;width:100%;z-index:100;
+      background:rgba(6,6,8,.92);backdrop-filter:blur(12px);
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 6%;height:90px;
+      border-bottom:1px solid var(--bordure);
+    }
+    .nav-logo{display:flex;align-items:center;gap:.6rem}
+    .nav-logo-icon{width:32px;height:32px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.75rem;font-weight:700;color:#fff}
+    .nav-logo-text{font-size:1.2rem;font-weight:700;color:var(--blanc);letter-spacing:-.02em}
+    .nav-logo-text span{color:var(--accent)}
+    .nav-links{display:flex;gap:2.2rem;list-style:none}
+    .nav-links a{color:var(--gris-texte);text-decoration:none;font-size:.82rem;letter-spacing:.05em;transition:color .2s}
+    .nav-links a:hover{color:var(--blanc)}
+    .nav-cta{background:var(--accent);color:#fff;border:none;padding:.55rem 1.5rem;border-radius:6px;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-size:.85rem;font-weight:600;transition:all .25s}
+    .nav-cta:hover{background:#5a52e0;transform:translateY(-1px)}
+
+    /* ── HERO ── */
+    #hero{
+      min-height:100vh;display:flex;align-items:center;justify-content:center;
+      text-align:center;padding:100px 5% 60px;position:relative;overflow:hidden;
+    }
+    .hero-glow{position:absolute;top:20%;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(108,99,255,.18) 0%,transparent 70%);pointer-events:none}
+    .hero-dots{position:absolute;inset:0;background-image:radial-gradient(rgba(108,99,255,.15) 1px,transparent 1px);background-size:30px 30px;pointer-events:none}
+    .hero-inner{position:relative;z-index:1;animation:fadeUp .9s ease both;max-width:800px;margin:0 auto}
+    .hero-chip{display:inline-flex;align-items:center;gap:.5rem;background:rgba(108,99,255,.12);border:1px solid rgba(108,99,255,.3);color:var(--accent);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding:.38rem 1rem;border-radius:20px;margin-bottom:2rem;font-weight:500}
+    .hero-chip::before{content:'';width:6px;height:6px;background:var(--vert);border-radius:50%;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
+    h1{font-size:clamp(2.8rem,7vw,6rem);line-height:.95;font-weight:700;letter-spacing:-.03em;margin-bottom:1.4rem}
+    h1 .w1{color:var(--blanc)}
+    h1 .w2{color:var(--accent)}
+    h1 .w3{color:var(--gris-texte);font-weight:300}
+    .hero-sub{color:var(--gris-texte);font-size:1.05rem;font-weight:400;max-width:500px;margin:0 auto 2.8rem;line-height:1.75}
+    .hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:4rem}
+    .btn-accent{background:var(--accent);color:#fff;padding:.9rem 2.4rem;border-radius:8px;text-decoration:none;font-size:.9rem;font-weight:600;transition:all .25s;display:inline-block}
+    .btn-accent:hover{background:#5a52e0;transform:translateY(-2px);box-shadow:0 8px 30px rgba(108,99,255,.3)}
+    .btn-outline{border:1px solid rgba(240,239,248,.15);color:rgba(240,239,248,.8);padding:.88rem 2.4rem;border-radius:8px;text-decoration:none;font-size:.9rem;display:inline-block;transition:all .25s}
+    .btn-outline:hover{border-color:rgba(240,239,248,.4);color:var(--blanc)}
+    .hero-stats{display:flex;gap:0;justify-content:center}
+    .stat-item{text-align:center;padding:1.5rem 2.5rem;border-right:1px solid var(--bordure)}
+    .stat-item:last-child{border:none}
+    .stat-num{font-family:'Space Mono',monospace;font-size:1.8rem;font-weight:700;color:var(--blanc);display:block}
+    .stat-label{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gris-texte)}
+    .stats-wrap{border:1px solid var(--bordure);border-radius:12px;display:inline-flex}
+
+    /* ── SECTION ── */
+    section{padding:100px 6%;overflow-x:hidden}
+    .sec-tag{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:.8rem}
+    .sec-title{font-size:clamp(1.8rem,4vw,3rem);font-weight:700;letter-spacing:-.02em;margin-bottom:1rem;line-height:1.1}
+    .sec-sub{color:var(--gris-texte);max-width:500px;line-height:1.75;font-size:.97rem}
+
+    /* ── MODELES ── */
+    #modeles{background:var(--gris1)}
+    .modeles-intro{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;margin-bottom:4rem;flex-wrap:wrap}
+    .custom-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.3);color:var(--vert);font-size:.75rem;padding:.5rem 1rem;border-radius:6px;font-weight:500}
+    .custom-badge::before{content:'✦'}
+    .modeles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    .modele-card{background:var(--gris2);border-radius:12px;overflow:hidden;border:1px solid var(--bordure);transition:all .3s;cursor:pointer}
+    .modele-card:hover{transform:translateY(-6px);border-color:rgba(108,99,255,.4);box-shadow:0 20px 50px rgba(0,0,0,.4)}
+    .modele-thumb{height:200px;overflow:hidden;position:relative}
+    .modele-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+    .modele-card:hover .modele-thumb img{transform:scale(1.06)}
+    .modele-thumb-overlay{
+      position:absolute;inset:0;
+      background:linear-gradient(to bottom,transparent 40%,rgba(14,14,18,.9));
+      display:flex;align-items:flex-end;padding:1rem;
+    }
+    @media(hover:hover){
+      .modele-thumb-overlay{opacity:0;transition:opacity .3s}
+      .modele-card:hover .modele-thumb-overlay{opacity:1}
+    }
+    .btn-preview{background:var(--accent);color:#fff;padding:.5rem 1.2rem;border-radius:5px;text-decoration:none;font-size:.78rem;font-weight:600}
+    .modele-body{padding:1.4rem}
+    .modele-style-num{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--accent);letter-spacing:.15em;margin-bottom:.5rem}
+    .modele-name{font-size:1.05rem;font-weight:600;color:var(--blanc);margin-bottom:.4rem}
+    .modele-desc{font-size:.83rem;color:var(--gris-texte);line-height:1.6;margin-bottom:1rem}
+    .modele-tags{display:flex;flex-wrap:wrap;gap:.4rem}
+    .tag{font-size:.68rem;background:var(--gris3);color:var(--gris-texte);padding:.2rem .6rem;border-radius:4px}
+
+    /* ── PERSONNALISATION ── */
+    #perso{background:var(--noir)}
+    .perso-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+    .perso-visuel{background:var(--gris2);border-radius:16px;padding:2.5rem;border:1px solid var(--bordure)}
+    .perso-item{display:flex;align-items:center;gap:1rem;padding:1rem;background:var(--gris3);border-radius:8px;margin-bottom:.8rem;border:1px solid var(--bordure)}
+    .perso-item:last-child{margin:0}
+    .perso-icon{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+    .perso-icon.violet{background:rgba(108,99,255,.15)}
+    .perso-icon.vert{background:rgba(0,212,170,.15)}
+    .perso-icon.rose{background:rgba(255,107,107,.15)}
+    .perso-icon.or{background:rgba(255,184,0,.15)}
+    .perso-item-text strong{display:block;font-size:.88rem;color:var(--blanc);margin-bottom:.2rem}
+    .perso-item-text p{font-size:.78rem;color:var(--gris-texte)}
+    .perso-features{display:flex;flex-direction:column;gap:1.2rem}
+    .perso-feat{display:flex;gap:1rem;align-items:flex-start}
+    .feat-dot{width:8px;height:8px;background:var(--accent);border-radius:50%;flex-shrink:0;margin-top:.4rem}
+    .feat-text strong{display:block;font-size:.92rem;color:var(--blanc);margin-bottom:.2rem}
+    .feat-text p{font-size:.83rem;color:var(--gris-texte);line-height:1.6}
+
+    /* ── PROCESS ── */
+    #process{background:var(--gris1)}
+    .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
+    .process-step{background:var(--gris2);border-radius:12px;padding:2rem 1.8rem;border:1px solid var(--bordure);position:relative;overflow:hidden}
+    .process-step::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--vert))}
+    .step-num{font-family:'Space Mono',monospace;font-size:2.5rem;font-weight:700;color:rgba(108,99,255,.2);line-height:1;margin-bottom:1rem}
+    .step-title{font-size:1rem;font-weight:600;color:var(--blanc);margin-bottom:.6rem}
+    .step-desc{font-size:.83rem;color:var(--gris-texte);line-height:1.7}
+
+    /* ── TARIFS ── */
+    #tarifs{background:var(--noir);text-align:center}
+    .tarifs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;max-width:900px;margin-left:auto;margin-right:auto}
+    .tarif-card{background:var(--gris2);border-radius:12px;padding:2.5rem 2rem;border:1px solid var(--bordure);text-align:left;transition:all .3s}
+    .tarif-card:hover{transform:translateY(-4px)}
+    .tarif-card.featured{border-color:var(--accent);background:linear-gradient(135deg,rgba(108,99,255,.1),var(--gris2));position:relative}
+    .featured-badge{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;padding:.3rem 1rem;border-radius:0 0 6px 6px;font-weight:600}
+    .tarif-label{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gris-texte);margin-bottom:.8rem}
+    .tarif-price{font-size:2.8rem;font-weight:700;color:var(--blanc);line-height:1;margin-bottom:.3rem;letter-spacing:-.03em}
+    .tarif-price span{font-size:1rem;font-weight:400;color:var(--gris-texte)}
+    .tarif-desc{font-size:.83rem;color:var(--gris-texte);margin-bottom:1.5rem;line-height:1.6}
+    .tarif-features{display:flex;flex-direction:column;gap:.6rem;margin-bottom:2rem}
+    .tarif-feat{font-size:.83rem;color:rgba(240,239,248,.75);display:flex;gap:.6rem;align-items:flex-start}
+    .tarif-feat::before{content:'✓';color:var(--vert);font-weight:700;flex-shrink:0}
+    .btn-tarif{display:block;text-align:center;padding:.78rem;border-radius:7px;font-size:.85rem;font-weight:600;text-decoration:none;transition:all .25s;border:1px solid rgba(240,239,248,.15);color:var(--blanc)}
+    .btn-tarif:hover{border-color:var(--accent);color:var(--accent)}
+    .tarif-card.featured .btn-tarif{background:var(--accent);border-color:var(--accent);color:#fff}
+    .tarif-card.featured .btn-tarif:hover{background:#5a52e0}
+
+    /* ── CONTACT ── */
+    #contact{background:var(--gris1)}
+    .contact-inner{max-width:580px;margin:0 auto}
+    .contact-inner .sec-title{margin-bottom:.5rem}
+    .contact-inner .sec-sub{margin-bottom:2.5rem}
+    .contact-form{display:flex;flex-direction:column;gap:1rem}
+    .cf-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .cf-group{display:flex;flex-direction:column;gap:.4rem}
+    .cf-group label{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gris-texte)}
+    .cf-group input,.cf-group textarea,.cf-group select{background:var(--gris2);border:1px solid var(--bordure);color:var(--blanc);padding:.8rem 1rem;border-radius:7px;font-family:'Space Grotesk',sans-serif;font-size:.9rem;outline:none;transition:border-color .25s}
+    .cf-group input::placeholder,.cf-group textarea::placeholder{color:rgba(240,239,248,.2)}
+    .cf-group input:focus,.cf-group textarea:focus,.cf-group select:focus{border-color:var(--accent)}
+    .cf-group select option{background:var(--gris2)}
+    .cf-group textarea{resize:vertical;min-height:100px}
+    .btn-send{background:var(--accent);color:#fff;border:none;padding:.9rem 2rem;border-radius:7px;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-size:.9rem;font-weight:600;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:.5rem}
+    .btn-send:hover{background:#5a52e0;transform:translateY(-1px);box-shadow:0 6px 20px rgba(108,99,255,.3)}
+    .btn-send::after{content:'→'}
+
+    footer{background:var(--noir);color:rgba(240,239,248,.25);text-align:center;padding:2.5rem 5%;font-size:.8rem;border-top:1px solid var(--bordure)}
+    footer .logo{font-size:1.1rem;font-weight:700;color:var(--blanc);margin-bottom:.5rem;letter-spacing:-.01em}
+    footer .logo span{color:var(--accent)}
+
+    .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:999;align-items:center;justify-content:center}
+    .modal-overlay.show{display:flex}
+    .modal{background:var(--gris2);border-radius:12px;padding:2.5rem;max-width:400px;width:90%;text-align:center;animation:fadeUp .4s ease;border:1px solid var(--bordure)}
+    .modal h3{font-size:1.5rem;font-weight:700;margin-bottom:.6rem}
+    .modal p{color:var(--gris-texte);margin-bottom:1.5rem;line-height:1.6}
+    .modal-close{background:var(--accent);color:#fff;border:none;padding:.7rem 2rem;border-radius:7px;cursor:pointer;font-size:.88rem;font-weight:600}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+
+    @media(max-width:900px){
+      .nav-links{display:none}
+      .modeles-grid{grid-template-columns:1fr}
+      .perso-grid{grid-template-columns:1fr}
+      .process-grid{grid-template-columns:1fr 1fr}
+      .tarifs-grid{grid-template-columns:1fr}
+      .cf-row{grid-template-columns:1fr}
+      .hero-stats,.stats-wrap{flex-direction:column;border:none}
+      .stat-item{border:none;border-bottom:1px solid var(--bordure)}
+      .stat-item:last-child{border:none}
+      * { max-width: 100%; }
+      img { max-width: 100%; }
+    }
+    @media(max-width:600px){
+      .process-grid{grid-template-columns:1fr}
+      .modeles-intro{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img src="nexoria-logo.png" alt="Nexoria" style="height:80px;width:auto;object-fit:contain"/>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#modeles">Modèles</a></li>
+    <li><a href="#perso">Personnalisation</a></li>
+    <li><a href="#process">Comment ça marche</a></li>
+    <li><a href="#tarifs">Tarifs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Démarrer un projet</button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-dots"></div>
+  <div class="hero-inner">
+    <div class="hero-chip">Création de sites web professionnels</div>
+    <h1>
+      <span class="w1">Votre site web,</span><br>
+      <span class="w2">en ligne.</span><br>
+      <span class="w3">Simplement.</span>
+    </h1>
+    <p class="hero-sub">Nexoria crée des sites web professionnels et personnalisés pour les restaurants, commerces et artisans. Livré en 72h, hébergé, prêt à l'emploi.</p>
+    <div class="hero-btns">
+      <a href="#modeles" class="btn-accent">Voir les modèles</a>
+      <a href="#tarifs" class="btn-outline">Voir les tarifs</a>
+    </div>
+    <div class="stats-wrap">
+      <div class="stat-item"><span class="stat-num">06</span><span class="stat-label">Styles disponibles</span></div>
+      <div class="stat-item"><span class="stat-num">100%</span><span class="stat-label">Personnalisable</span></div>
+      <div class="stat-item"><span class="stat-num">72h</span><span class="stat-label">Délai livraison</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MODELES -->
+<section id="modeles">
+  <div class="modeles-intro">
+    <div>
+      <div class="sec-tag">// Nos modèles</div>
+      <h2 class="sec-title">Choisissez votre style</h2>
+      <p class="sec-sub">6 exemples pour vous inspirer — mais votre site peut être entièrement différent, créé sur mesure selon vos envies.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:.8rem;align-items:flex-end">
+      <div class="custom-badge">Tout est personnalisable — couleurs, textes, photos, sections</div>
+      <div style="font-size:.78rem;color:var(--gris-texte);text-align:right;max-width:280px;line-height:1.6">💡 Ces modèles sont des <strong style="color:var(--blanc)">exemples d'inspiration</strong>. Vous pouvez aussi nous décrire votre propre idée — on la crée de zéro.</div>
+      <a href="#maquette" class="btn-accent" style="font-size:.82rem;padding:.7rem 1.6rem">🎁 Demander une maquette gratuite</a>
+    </div>
+  </div>
+
+  <div class="modeles-grid">
+    <div class="modele-card">
+      <div class="modele-thumb">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=700&q=80" alt="Style 1"/>
+        <div class="modele-thumb-overlay"><a href="style1-chaleureux.html" target="_blank" class="btn-preview">Voir le site →</a></div>
+
+      </div>
+      <div class="modele-body">
+        <div class="modele-style-num">STYLE_01</div>
+        <div class="modele-name">Chaleureux & Traditionnel</div>
+        <div class="modele-desc">Mise en page split, ardoise style bistrot, mosaïque photos. Tons chauds et authentiques.</div>
+        <div class="modele-tags"><span class="tag">Ardoise menu</span><span class="tag">Split hero</span><span class="tag">Mosaïque</span></div>
+      </div>
+    </div>
+
+    <div class="modele-card">
+      <div class="modele-thumb">
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=700&q=80" alt="Style 2"/>
+        <div class="modele-thumb-overlay"><a href="style2-commerce.html" target="_blank" class="btn-preview">Voir le site →</a></div>
+      </div>
+      <div class="modele-body">
+        <div class="modele-style-num">STYLE_02</div>
+        <div class="modele-name">Élégant & Commerce</div>
+        <div class="modele-desc">Parfait pour les boutiques, commerces et magasins. Présentation produits, galerie, histoire de la marque.</div>
+        <div class="modele-tags"><span class="tag">Boutique</span><span class="tag">Commerce</span><span class="tag">Mode</span></div>
+      </div>
+    </div>
+
+    <div class="modele-card">
+      <div class="modele-thumb">
+        <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=700&q=80" alt="Style 3"/>
+        <div class="modele-thumb-overlay"><a href="style3-artisan.html" target="_blank" class="btn-preview">Voir le site →</a></div>
+      </div>
+      <div class="modele-body">
+        <div class="modele-style-num">STYLE_03</div>
+        <div class="modele-name">Moderne & Artisan</div>
+        <div class="modele-desc">Pour les artisans et prestataires de services. Prestations, réalisations et devis en ligne.</div>
+        <div class="modele-tags"><span class="tag">Artisan</span><span class="tag">Services</span><span class="tag">BTP</span></div>
+      </div>
+    </div>
+
+    <div class="modele-card">
+      <div class="modele-thumb">
+        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=700&q=80" alt="Style 4"/>
+        <div class="modele-thumb-overlay"><a href="style4-beaute.html" target="_blank" class="btn-preview">Voir le site →</a></div>
+      </div>
+      <div class="modele-body">
+        <div class="modele-style-num">STYLE_04</div>
+        <div class="modele-name">Doux & Beauté</div>
+        <div class="modele-desc">Conçu pour les salons de coiffure, instituts de beauté et spas. Prise de RDV, équipe, prestations.</div>
+        <div class="modele-tags"><span class="tag">Coiffure</span><span class="tag">Beauté</span><span class="tag">Spa</span></div>
+      </div>
+    </div>
+
+    <div class="modele-card">
+      <div class="modele-thumb">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=700&q=80" alt="Style 5"/>
+        <div class="modele-thumb-overlay"><a href="style5-moderne.html" target="_blank" class="btn-preview">Voir le site →</a></div>
+      </div>
+      <div class="modele-body">
+        <div class="modele-style-num">STYLE_05</div>
+        <div class="modele-name">Moderne & Tech</div>
+        <div class="modele-desc">Layout en grille, très structuré, animations subtiles. Design contemporain et propre.</div>
+        <div class="modele-tags"><span class="tag">Grille</span><span class="tag">Structuré</span><span class="tag">Moderne</span></div>
+      </div>
+    </div>
+
+    <div class="modele-card">
+      <div class="modele-thumb">
+        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=700&q=80" alt="Style 6"/>
+        <div class="modele-thumb-overlay"><a href="style6-professionnel.html" target="_blank" class="btn-preview">Voir le site →</a></div>
+      </div>
+      <div class="modele-body">
+        <div class="modele-style-num">STYLE_06</div>
+        <div class="modele-name">Professionnel & Libéral</div>
+        <div class="modele-desc">Idéal pour les professions libérales : médecins, avocats, coachs, consultants. Sérieux et rassurant.</div>
+        <div class="modele-tags"><span class="tag">Médecin</span><span class="tag">Avocat</span><span class="tag">Coach</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONNALISATION -->
+<section id="perso">
+  <div class="perso-grid">
+    <div>
+      <div class="sec-tag">// Personnalisation</div>
+      <h2 class="sec-title">Tout est<br>modifiable</h2>
+      <p class="sec-sub" style="margin-bottom:2.5rem">Les modèles sont des bases de départ. Chaque élément est adapté à votre restaurant : votre identité, vos couleurs, vos photos.</p>
+      <div class="perso-features">
+        <div class="perso-feat"><div class="feat-dot"></div><div class="feat-text"><strong>Couleurs & typographies</strong><p>On adapte les couleurs à votre charte graphique ou on en crée une pour vous.</p></div></div>
+        <div class="perso-feat"><div class="feat-dot"></div><div class="feat-text"><strong>Textes & contenus</strong><p>Menu, horaires, description, avis… tout est remplacé par vos vraies informations.</p></div></div>
+        <div class="perso-feat"><div class="feat-dot"></div><div class="feat-text"><strong>Photos</strong><p>Vos photos de plats et de salle remplacent les photos d'illustration.</p></div></div>
+        <div class="perso-feat"><div class="feat-dot"></div><div class="feat-text"><strong>Sections</strong><p>On ajoute ou retire des sections selon vos besoins. Livraison, carte cadeau, événements…</p></div></div>
+      </div>
+    </div>
+    <div class="perso-visuel">
+      <div style="font-family:'Space Mono',monospace;font-size:.65rem;color:var(--accent);margin-bottom:1.5rem;letter-spacing:.1em">// CE QU'ON PERSONNALISE</div>
+      <div class="perso-item"><div class="perso-icon violet">🎨</div><div class="perso-item-text"><strong>Couleurs & Logo</strong><p>Votre palette, votre identité visuelle</p></div></div>
+      <div class="perso-item"><div class="perso-icon vert">📝</div><div class="perso-item-text"><strong>Textes & Menu</strong><p>Vos plats, vos prix, votre histoire</p></div></div>
+      <div class="perso-item"><div class="perso-icon rose">📸</div><div class="perso-item-text"><strong>Photos</strong><p>Vos plats, votre salle, votre équipe</p></div></div>
+      <div class="perso-item"><div class="perso-icon or">📍</div><div class="perso-item-text"><strong>Infos pratiques</strong><p>Adresse, horaires, téléphone, carte</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div style="text-align:center;margin-bottom:1rem"><div class="sec-tag">// Comment ça marche</div></div>
+  <h2 class="sec-title" style="text-align:center;margin-bottom:.5rem">Simple & rapide</h2>
+  <p class="sec-sub" style="text-align:center;margin:0 auto 3rem">De votre contact à la mise en ligne en moins d'une semaine.</p>
+  <div class="process-grid">
+    <div class="process-step"><div class="step-num">01</div><div class="step-title">Vous choisissez un style</div><p class="step-desc">On choisit ensemble le style qui correspond le mieux à votre restaurant et votre image.</p></div>
+    <div class="process-step"><div class="step-num">02</div><div class="step-title">Vous m'envoyez vos infos</div><p class="step-desc">Nom, adresse, horaires, menu, photos… Vous m'envoyez ce que vous avez, je m'occupe du reste.</p></div>
+    <div class="process-step"><div class="step-num">03</div><div class="step-title">Je crée votre site</div><p class="step-desc">Votre site est entièrement personnalisé. Livraison d'une maquette sous 72h pour validation.</p></div>
+    <div class="process-step"><div class="step-num">04</div><div class="step-title">Mise en ligne</div><p class="step-desc">Votre site est hébergé sur votre nom de domaine. Vos clients vous trouvent immédiatement.</p></div>
+  </div>
+</section>
+
+<!-- TARIFS -->
+<section id="tarifs">
+  <div class="sec-tag">// Tarifs</div>
+  <h2 class="sec-title" style="margin-bottom:.5rem">Transparent & accessible</h2>
+  <p class="sec-sub" style="margin:0 auto 1.5rem">Des prix clairs, sans mauvaise surprise.</p>
+  <div style="display:inline-flex;align-items:center;gap:1rem;background:linear-gradient(135deg,rgba(108,99,255,.12),rgba(0,212,170,.08));border:1px solid var(--bordure);border-radius:10px;padding:1rem 1.8rem;margin-bottom:3rem;flex-wrap:wrap;justify-content:center">
+    <div style="font-size:1.3rem">🏆</div>
+    <div style="text-align:left">
+      <div style="font-size:.88rem;font-weight:700;color:var(--blanc)">Les tarifs les plus bas de Narbonne et ses alentours</div>
+      <div style="font-size:.8rem;color:var(--gris-texte);margin-top:.2rem">Sans compromis sur la qualité — des sites professionnels, modernes et performants.</div>
+    </div>
+  </div>
+  <div class="tarifs-grid">
+    <div class="tarif-card">
+      <div class="tarif-label">Essentiel</div>
+      <div class="tarif-price">299<span> €</span></div>
+      <p class="tarif-desc">Le minimum pour avoir un site vitrine. Vous gérez l'hébergement vous-même.</p>
+      <div class="tarif-features">
+        <div class="tarif-feat">Site vitrine complet</div>
+        <div class="tarif-feat">Menu & horaires</div>
+        <div class="tarif-feat">Galerie photos</div>
+        <div class="tarif-feat">Formulaire de contact</div>
+        <div class="tarif-feat">Responsive mobile</div>
+      </div>
+      <a href="#contact" class="btn-tarif">Commencer</a>
+    </div>
+    <div class="tarif-card featured">
+      <div class="featured-badge">⭐ Recommandé</div>
+      <div class="tarif-label">Complet</div>
+      <div class="tarif-price">399<span> €</span></div>
+      <p class="tarif-desc">Création + mise en ligne complète. On s'occupe de tout, vous n'avez rien à faire.</p>
+      <div class="tarif-features">
+        <div class="tarif-feat">Tout le pack Essentiel</div>
+        <div class="tarif-feat">Réservation en ligne</div>
+        <div class="tarif-feat">Section avis clients</div>
+        <div class="tarif-feat">Mise en ligne incluse</div>
+        <div class="tarif-feat">Nom de domaine configuré</div>
+      </div>
+      <div style="background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.3);border-radius:6px;padding:.8rem 1rem;margin-bottom:1rem">
+        <div style="font-size:.72rem;color:var(--vert);font-weight:600;margin-bottom:.3rem">💡 Combo idéal</div>
+        <div style="font-size:.78rem;color:var(--gris-texte);line-height:1.5">Combinez avec l'abonnement mensuel à <strong style="color:var(--blanc)">25€/mois</strong> pour un site toujours en ligne, à jour et sans souci.</div>
+      </div>
+      <a href="#contact" class="btn-tarif">Commencer</a>
+    </div>
+    <div class="tarif-card">
+      <div class="tarif-label">Mensuel</div>
+      <div class="tarif-price">25<span> €/mois</span></div>
+      <p class="tarif-desc">Hébergement, mises à jour et support inclus. Sans engagement.</p>
+      <div class="tarif-features">
+        <div class="tarif-feat">Hébergement inclus</div>
+        <div class="tarif-feat">Mises à jour menu & horaires</div>
+        <div class="tarif-feat">Support technique</div>
+        <div class="tarif-feat">Sauvegardes automatiques</div>
+        <div class="tarif-feat">Sans engagement</div>
+      </div>
+      <div style="background:rgba(108,99,255,.08);border:1px solid rgba(108,99,255,.2);border-radius:6px;padding:.8rem 1rem;margin-bottom:1rem">
+        <div style="font-size:.75rem;color:var(--gris-texte);line-height:1.5">🔗 À combiner avec le pack <strong style="color:var(--blanc)">Complet à 349€</strong> pour une solution clé en main.</div>
+      </div>
+      <a href="#contact" class="btn-tarif">Commencer</a>
+    </div>
+  </div>
+</section>
+
+<!-- MAQUETTE GRATUITE -->
+<section id="maquette" style="background:linear-gradient(135deg,rgba(108,99,255,.12),rgba(0,212,170,.08));border-top:1px solid var(--bordure);border-bottom:1px solid var(--bordure);padding:80px 6%">
+  <div style="max-width:620px;margin:0 auto;text-align:center">
+    <div style="display:inline-flex;align-items:center;gap:.5rem;background:rgba(0,212,170,.12);border:1px solid rgba(0,212,170,.3);color:var(--vert);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding:.38rem 1rem;border-radius:20px;margin-bottom:1.5rem;font-weight:500">🎁 Offre gratuite</div>
+    <h2 style="font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;letter-spacing:-.02em;margin-bottom:1rem;line-height:1.1">Recevez une maquette<br><span style="color:var(--accent)">gratuite & sans engagement</span></h2>
+    <p style="color:var(--gris-texte);font-size:.97rem;line-height:1.75;margin-bottom:2.5rem">Décrivez-nous votre activité en quelques mots et on vous crée une maquette personnalisée gratuitement. Vous visualisez votre futur site avant de vous engager.</p>
+
+    <div id="maquette-success" style="display:none;background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.3);color:var(--vert);padding:2rem 1.5rem;border-radius:8px;text-align:center;margin-bottom:1rem;animation:fadeUp .5s ease">
+      <div style="font-size:2.5rem;margin-bottom:.8rem">🚀</div>
+      <div style="font-size:1.1rem;font-weight:700;margin-bottom:.5rem">Demande bien reçue !</div>
+      <div style="font-size:.9rem;color:var(--gris-texte)">On vous envoie votre maquette personnalisée sous 48h.</div>
+    </div>
+    <div id="maquette-error" style="display:none;background:rgba(255,107,107,.1);border:1px solid rgba(255,107,107,.3);color:#ff6b6b;padding:1rem 1.5rem;border-radius:8px;margin-bottom:1rem">
+      Une erreur est survenue. Veuillez réessayer.
+    </div>
+
+    <form id="maquette-form" style="display:flex;flex-direction:column;gap:1rem;text-align:left">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+        <div class="cf-group">
+          <label style="font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gris-texte)">Votre nom</label>
+          <input type="text" name="nom_maquette" placeholder="Jean Dupont" data-fs-field required style="background:var(--gris2);border:1px solid var(--bordure);color:var(--blanc);padding:.8rem 1rem;border-radius:7px;font-family:'Space Grotesk',sans-serif;font-size:.9rem;outline:none;transition:border-color .25s"/>
+        </div>
+        <div class="cf-group">
+          <label style="font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gris-texte)">Email</label>
+          <input type="email" name="email_maquette" placeholder="votre@email.fr" data-fs-field required style="background:var(--gris2);border:1px solid var(--bordure);color:var(--blanc);padding:.8rem 1rem;border-radius:7px;font-family:'Space Grotesk',sans-serif;font-size:.9rem;outline:none;transition:border-color .25s"/>
+        </div>
+      </div>
+      <div class="cf-group">
+        <label style="font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gris-texte)">Votre activité</label>
+        <input type="text" name="activite" placeholder="Ex : pizzeria à Lyon, salon de coiffure à Paris, boutique de vêtements…" data-fs-field required style="background:var(--gris2);border:1px solid var(--bordure);color:var(--blanc);padding:.8rem 1rem;border-radius:7px;font-family:'Space Grotesk',sans-serif;font-size:.9rem;outline:none;transition:border-color .25s"/>
+      </div>
+      <div class="cf-group">
+        <label style="font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gris-texte)">Style souhaité (optionnel)</label>
+        <select name="style_maquette" style="background:var(--gris2);border:1px solid var(--bordure);color:var(--blanc);padding:.8rem 1rem;border-radius:7px;font-family:'Space Grotesk',sans-serif;font-size:.9rem;outline:none">
+          <option value="">Pas de préférence</option>
+          <option>Style 1 – Chaleureux & Traditionnel</option>
+          <option>Style 2 – Sombre & Premium</option>
+          <option>Style 3 – Minimaliste & Épuré</option>
+          <option>Style 4 – Coloré & Dynamique</option>
+          <option>Style 5 – Moderne & Tech</option>
+          <option>Style 6 – Vintage & Rétro</option>
+          <option>Je veux quelque chose de différent</option>
+        </select>
+      </div>
+      <button type="submit" data-fs-submit-btn style="background:var(--accent);color:#fff;border:none;padding:.9rem 2rem;border-radius:7px;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-size:.9rem;font-weight:600;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:.5rem">
+        🎁 Recevoir ma maquette gratuite →
+      </button>
+      <p style="font-size:.75rem;color:var(--gris-texte);text-align:center">Sans engagement · Livraison sous 48h · 100% gratuit</p>
+    </form>
+  </div>
+  <div style="max-width:900px;margin:1.5rem auto 0;background:linear-gradient(135deg,rgba(108,99,255,.12),rgba(0,212,170,.08));border:1px solid var(--bordure);border-radius:12px;padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+    <div>
+      <div style="font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--vert);margin-bottom:.4rem;font-weight:600">💡 Combo le plus populaire</div>
+      <div style="font-size:1rem;font-weight:600;color:var(--blanc)">Pack Complet + Abonnement Mensuel</div>
+      <div style="font-size:.85rem;color:var(--gris-texte);margin-top:.3rem">Votre site créé, mis en ligne et maintenu — vous n'avez plus à vous en occuper.</div>
+    </div>
+    <div style="text-align:right;flex-shrink:0">
+      <div style="font-size:1.5rem;font-weight:700;color:var(--blanc)">399€ <span style="font-size:.9rem;color:var(--gris-texte)">+ 25€/mois</span></div>
+      <a href="#contact" style="display:inline-block;margin-top:.5rem;background:var(--vert);color:var(--noir);padding:.6rem 1.4rem;border-radius:6px;font-size:.82rem;font-weight:700;text-decoration:none">Je veux ce combo →</a>
+    </div>
+  </div>
+</section>
+<section id="contact">
+  <div class="contact-inner">
+    <div class="sec-tag">// Contact</div>
+    <h2 class="sec-title">Démarrons votre projet</h2>
+    <p class="sec-sub">Vous avez un commerce sans site ou avec un site dépassé ? Envoyez-moi un message, je vous réponds sous 24h.</p>
+
+    <div id="contact-success" style="display:none;background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.3);color:var(--vert);padding:2rem 1.5rem;border-radius:8px;text-align:center;margin-bottom:1rem;animation:fadeUp .5s ease">
+      <div style="font-size:2.5rem;margin-bottom:.8rem">🚀</div>
+      <div style="font-size:1.1rem;font-weight:700;margin-bottom:.5rem">Message bien envoyé !</div>
+      <div style="font-size:.9rem;color:var(--gris-texte)">Merci pour votre intérêt. Je vous recontacte sous 24h.</div>
+    </div>
+    <div id="contact-error" style="display:none;background:rgba(255,107,107,.1);border:1px solid rgba(255,107,107,.3);color:#ff6b6b;padding:1rem 1.5rem;border-radius:8px;margin-bottom:1rem">
+      Une erreur est survenue. Veuillez réessayer.
+    </div>
+
+    <form id="nexoria-form" class="contact-form">
+      <div class="cf-row">
+        <div class="cf-group">
+          <label for="nom">Nom & Commerce</label>
+          <input type="text" id="nom" name="nom" placeholder="Jean Dupont – Mon Commerce" data-fs-field required/>
+          <span data-fs-error="nom" style="color:#ff6b6b;font-size:.78rem"></span>
+        </div>
+        <div class="cf-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="jean@moncommerce.fr" data-fs-field required/>
+          <span data-fs-error="email" style="color:#ff6b6b;font-size:.78rem"></span>
+        </div>
+      </div>
+      <div class="cf-row">
+        <div class="cf-group">
+          <label for="telephone">Téléphone</label>
+          <input type="tel" id="telephone" name="telephone" placeholder="06 00 00 00 00"/>
+        </div>
+        <div class="cf-group">
+          <label for="pack">Pack choisi</label>
+          <select id="pack" name="pack">
+            <option value="">Je ne sais pas encore</option>
+            <option>Pack Essentiel — 299€</option>
+            <option>Pack Complet — 399€</option>
+            <option>Pack Complet + Mensuel — 399€ + 25€/mois 🏆 Meilleur choix</option>
+          </select>
+          <span style="font-size:.72rem;color:var(--vert);margin-top:.3rem;display:block">💡 Le Complet + Mensuel = votre site créé, en ligne et maintenu sans effort.</span>
+        </div>
+      </div>
+      <div class="cf-row">
+        <div class="cf-group">
+          <label for="style">Style préféré</label>
+          <select id="style" name="style">
+            <option value="">Je ne sais pas encore</option>
+            <option>Style 1 – Chaleureux & Traditionnel</option>
+            <option>Style 2 – Sombre & Premium</option>
+            <option>Style 3 – Minimaliste & Épuré</option>
+            <option>Style 4 – Coloré & Dynamique</option>
+            <option>Style 5 – Moderne & Tech</option>
+            <option>Style 6 – Vintage & Rétro</option>
+            <option>Je veux quelque chose de différent</option>
+          </select>
+        </div>
+      </div>
+      <div class="cf-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Parlez-moi de votre activité…" data-fs-field></textarea>
+        <span data-fs-error="message" style="color:#ff6b6b;font-size:.78rem"></span>
+      </div>
+      <button type="submit" class="btn-send" data-fs-submit-btn>Envoyer le message →</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">Nexo<span>ria</span></div>
+  <p>Création de sites web professionnels · © 2025 Nexoria · Tous droits réservés</p>
+</footer>
+
+<script>
+  async function submitForm(formId, successId, errorId) {
+    const form = document.getElementById(formId);
+    const successEl = document.getElementById(successId);
+    const errorEl = document.getElementById(errorId);
+    const btn = form.querySelector('[type="submit"]');
+
+    const data = new FormData(form);
+    btn.disabled = true;
+    btn.textContent = 'Envoi en cours…';
+
+    try {
+      const res = await fetch('https://formspree.io/f/xkokljkp', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        form.style.display = 'none';
+        successEl.style.display = 'block';
+      } else {
+        errorEl.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Réessayer';
+      }
+    } catch(e) {
+      errorEl.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Réessayer';
+    }
+  }
+
+  document.getElementById('nexoria-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    submitForm('nexoria-form', 'contact-success', 'contact-error');
+  });
+
+  document.getElementById('maquette-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    submitForm('maquette-form', 'maquette-success', 'maquette-error');
+  });
+</script>
+
+</body>
+</html>
